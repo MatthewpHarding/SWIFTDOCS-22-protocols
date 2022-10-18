@@ -15,10 +15,13 @@ protocol SomeProtocol {
     // protocol definition goes here
 }
 //: Custom types state that they adopt a particular protocol by placing the protocol’s name after the type’s name, separated by a colon, as part of their definition. Multiple protocols can be listed, and are separated by commas:
+protocol FirstProtocol {}
+protocol AnotherProtocol {}
 struct SomeStructure: FirstProtocol, AnotherProtocol {
     // structure definition goes here
 }
 //: If a class has a superclass, list the superclass name before any protocols it adopts, followed by a comma:
+class SomeSuperclass {}
 class SomeClass: SomeSuperclass, FirstProtocol, AnotherProtocol {
     // class definition goes here
 }
@@ -29,12 +32,12 @@ class SomeClass: SomeSuperclass, FirstProtocol, AnotherProtocol {
 //: If a protocol requires a property to be gettable and settable, that property requirement can’t be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it’s valid for the property to be also settable if this is useful for your own code.
 //:
 //: Property requirements are always declared as variable properties, prefixed with the var keyword. Gettable and settable properties are indicated by writing { get set } after their type declaration, and gettable properties are indicated by writing { get }.
-protocol SomeProtocol {
+protocol SomeProtocol2 {
     var mustBeSettable: Int { get set }
     var doesNotNeedToBeSettable: Int { get }
 }
 //: Always prefix type property requirements with the static keyword when you define them in a protocol. This rule pertains even though type property requirements can be prefixed with the class or static keyword when implemented by a class:
-protocol AnotherProtocol {
+protocol AnotherProtocol2 {
     static var someTypeProperty: Int { get set }
 }
 //: Here’s an example of a protocol with a single instance property requirement:
@@ -75,7 +78,7 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 //:
 //: As with type property requirements, you always prefix type method requirements with the static keyword when they’re defined in a protocol. This is true even though type method requirements are prefixed with the class or static keyword when implemented by a class:
 //:
-protocol SomeProtocol {
+protocol SomeProtocol3 {
     static func someTypeMethod()
 }
 //: The following example defines a protocol with a single instance method requirement:
@@ -138,12 +141,12 @@ lightSwitch.toggle()
 //: ## Initializer Requirements
 //:
 //: Protocols can require specific initializers to be implemented by conforming types. You write these initializers as part of the protocol’s definition in exactly the same way as for normal initializers, but without curly braces or an initializer body:
-protocol SomeProtocol {
+protocol SomeProtocol4 {
     init(someParameter: Int)
 }
 //: ### Class Implementations of Protocol Initializer Requirements
 //: You can implement a protocol initializer requirement on a conforming class as either a designated initializer or a convenience initializer. In both cases, you must mark the initializer implementation with the required modifier:
-class SomeClass: SomeProtocol {
+class SomeClass2: SomeProtocol4 {
     required init(someParameter: Int) {
         // initializer implementation goes here
     }
@@ -156,7 +159,7 @@ class SomeClass: SomeProtocol {
 //:     → You don’t need to mark protocol initializer implementations with the required modifier on classes that are marked with the final modifier, because final classes can’t subclassed. For more about the final modifier, see Preventing Overrides.
 //:
 //: If a subclass overrides a designated initializer from a superclass, and also implements a matching initializer requirement from a protocol, mark the initializer implementation with both the required and override modifiers:
-protocol SomeProtocol {
+protocol SomeProtocol5 {
     init()
 }
 
@@ -166,7 +169,7 @@ class SomeSuperClass {
     }
 }
 
-class SomeSubClass: SomeSuperClass, SomeProtocol {
+class SomeSubClass: SomeSuperClass, SomeProtocol5 {
     // "required" from SomeProtocol conformance; "override" from SomeSuperClass
     required override init() {
         // initializer implementation goes here
@@ -491,6 +494,7 @@ print(game.prettyTextualDescription)
 //: ## Class-Only Protocols
 //:
 //: You can limit protocol adoption to class types (and not structures or enumerations) by adding the AnyObject protocol to a protocol’s inheritance list.
+protocol SomeInheritedProtocol {}
 protocol SomeClassOnlyProtocol: AnyObject, SomeInheritedProtocol {
     // class-only protocol definition goes here
 }
@@ -511,14 +515,14 @@ protocol Named {
 protocol Aged {
     var age: Int { get }
 }
-struct Person: Named, Aged {
+struct Person2: Named, Aged {
     var name: String
     var age: Int
 }
 func wishHappyBirthday(to celebrator: Named & Aged) {
     print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
 }
-let birthdayPerson = Person(name: "Malcolm", age: 21)
+let birthdayPerson = Person2(name: "Malcolm", age: 21)
 wishHappyBirthday(to: birthdayPerson)
 // Prints "Happy birthday, Malcolm, you're 21!"
 //: In this example, the Named protocol has a single requirement for a gettable String property called name. The Aged protocol has a single requirement for a gettable Int property called age. Both protocols are adopted by a structure called Person.
@@ -618,6 +622,7 @@ for object in objects {
 //: An optional protocol requirement can be called with optional chaining, to account for the possibility that the requirement was not implemented by a type that conforms to the protocol. You check for an implementation of an optional method by writing a question mark after the name of the method when it’s called, such as someOptionalMethod?(someArgument). For information on optional chaining, see Optional Chaining.
 //:
 //: The following example defines an integer-counting class called Counter, which uses an external data source to provide its increment amount. This data source is defined by the CounterDataSource protocol, which has two optional requirements:
+import Foundation
 @objc protocol CounterDataSource {
     @objc optional func increment(forCount count: Int) -> Int
     @objc optional var fixedIncrement: Int { get }
@@ -705,10 +710,10 @@ extension RandomNumberGenerator {
     }
 }
 //: By creating an extension on the protocol, all conforming types automatically gain this method implementation without any additional modification.
-let generator = LinearCongruentialGenerator()
-print("Here's a random number: \(generator.random())")
+let generator2 = LinearCongruentialGenerator()
+print("Here's a random number: \(generator2.random())")
 // Prints "Here's a random number: 0.3746499199817101"
-print("And here's a random Boolean: \(generator.randomBool())")
+print("And here's a random Boolean: \(generator2.randomBool())")
 // Prints "And here's a random Boolean: true"
 //: Protocol extensions can add implementations to conforming types but can’t make a protocol extend or inherit from another protocol. Protocol inheritance is always specified in the protocol declaration itself.
 //:
