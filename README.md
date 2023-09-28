@@ -1,29 +1,13 @@
-![Swift](readme-images/swift-logo.png)
-
-Swift v5.7 | [Swift versions](find-my-swift-version.md) | [Swift.org](https://docs.swift.org).
-
-Taken from the [official Swift documentation](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html).
-
+![Swift](readme-images/swift-logo.png) 
 ![Xcode Playground](readme-images/xcode-icon.png)
-![Swift Playground Icon](readme-images/playground-file.png)
 
-👉 You can [view this document in Xcode](https://github.com/MatthewpHarding/SWIFTDOCS-22-protocols/archive/refs/heads/main.zip) to run and edit each example.
-## Run This File In Xcode
+# Page 22 [Protocols](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols)
 
-**Step 1:** Clone this repo or [download the files](https://github.com/MatthewpHarding/SWIFTDOCS-22-protocols/archive/refs/heads/main.zip).
+Swift v5.7 | [Swift.org](https://docs.swift.org) | [The official Swift Language Guide](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics) converted to Swift playgrounds.
 
-**Step 2:** In Xcode, ensure you have selected **Editor/Show Rendered Markup** to view the formatted instructions.
+The code attached is page 9 of [The official Swift Language Guide](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics) converted to a Swift playground making every code example editable and executable. Try it by cloning or downloading the repo and opening the `.playground` file in Xcode.
 
-**Step 3:** You can edit the code within Xcode!  🎉
-
-🤩 *..let's live a better life, by learning Swift* 🛠
-
-```Swift
-let myLife = [learning, coding, happiness] 
-```
-### 🧕🏻👨🏿‍💼👩🏼‍💼👩🏻‍💻👨🏼‍💼🧛🏻‍♀️👩🏼‍💻💁🏽‍♂️🕵🏻‍♂️🧝🏼‍♀️🦹🏼‍♀🧕🏾🧟‍♂️
 -----------
-# *Page 22* → Protocols
 
 A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
 
